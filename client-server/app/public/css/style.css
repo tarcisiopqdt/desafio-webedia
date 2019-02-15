@@ -68,6 +68,7 @@ a{
     color: #FFFFFF;
 }
 
+
  /*MAIN-CONTENT*/
  .main-container {
    /*max-width: calc(70% - 120px);
@@ -101,7 +102,7 @@ a{
     margin-top: 20px;
 }
 .item-card:nth-last-child(odd){
-    margin-left: 40px;
+    margin-right: 40px;
 }
 .item-card img{
     background: #7FC4FD;
@@ -114,21 +115,26 @@ a{
     display: flex;
     background: #7FC4FD;
     max-width: 390px;
-    max-height: 220px;
+    height: 220px;
 }
-.item-card span{
+.like-content{
     color: #2699FB;
     font-weight: bold;
     position: absolute;
     bottom: 12px;
     right: 18px;
+    width: 40px;
+    height: 30px;
+    text-align: center;
 }
-.item-card span::before{
-    content: "♥";
-    display: inline-block;
-    width: 16px;
-    height: 16px;
+.like-content:hover{
+    color: red;
+    font-size: 18px;
+    transition: 0.5s;
+}
+.btn-like{
     margin-right: 8px;
+    font-size: 22px;
 }
 .description h2{
     color: #2699FB;
@@ -201,4 +207,8 @@ a{
 }
 @media (max-width: 739px) {
    
+}
+
+.night-mode{
+    background-color: ;
 }
