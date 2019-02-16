@@ -16,7 +16,7 @@ console.log("API online... http://localhost:" + port);
 const dbConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: '1234',
     database: 'portal_noticias'
 })
 
@@ -32,6 +32,8 @@ app.get('/',function(req,res){
             res.send(result);
         }
     })
+
+    
     
 })
 
