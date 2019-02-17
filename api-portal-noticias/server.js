@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
 const dbConnection = require('./config/dbConnection');
 
 const app = express();
@@ -11,6 +10,16 @@ app.use(bodyParser.json());
 
 const port = 7000;
 
+app.use(function(req,res,next){
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'content-type');
+    res.setHeader('Access-Control-Allow-Credentials', '*');
+
+    next();
+});
+
 app.listen(port);
 console.log("API online... http://localhost:" + port);
 
@@ -18,61 +27,38 @@ console.log("API online... http://localhost:" + port);
 //index
 app.get('/',function(req,res){
 
-    res.setHeader("Access-Control-Allow-Origin","*");
+  
     //puxa todos as noticias
-    dbConnection.query("select * from noticias order by data_criacao desc limit 8", function(error, result){
+    dbConnection.query("select * from noticias, likes where noticias.id_noticia = likes.id_noticia order by data_criacao desc limit 8", function(error, result){
         if(error){
             console.log(error);
         }else{
             res.send(result);
         }
     })
+    
+})
 
+
+app.get('/most-liked',function(req,res){
+
+    //puxa ordenado por quantidade de likes
+    dbConnection.query("select * from noticias, likes where noticias.id_noticia = likes.id_noticia order by qtd_likes desc limit 5", function(error, resposta){
+        if(error){
+            console.log(error);
+        }else{
+            res.send(resposta);
+        }
+    })
 
 })
 
-//puxa likes de acordo com a noticia
-app.get("/user/:id",function(req,res){
+
+
+app.put('/like',function(req,res){
    
-    res.setHeader("Access-Control-Allow-Origin","*");
-        
-        dbConnection.query("select * from likes where user_id=1", function(error, result){
-            if(error){
-                console.log(error);
-            }else{
-                res.send(result);
-            }
-        })
-})
-
-
-//get by id
-app.get('/:id',function(req,res){
-
-    res.setHeader("Access-Control-Allow-Origin","*");
-
-    dbConnection.query("select * from noticias where id_noticia = ?", req.params.id, function(error, result){
-        if(error){
-            console.log(error);
-        }else{
-            res.send(result);
-        }
-    })
-})
-
-app.get('/like/:id',function(req,res){
-    res.setHeader("Acess-Control-Allow-Origin","*");
-    console.log(req.params);
-    res.send("Ok " + req.params.id);
-})
-
-//put by id
-app.put('/like/:id',function(req,res){
-
-    res.setHeader("Acess-Control-Allow-Origin","*");
-
-    const sql = `UPDATE noticias SET qtd_likes = '${req.body.likes+1}' WHERE id_noticias = ${req.body.id_noticia}`;
-    console.log(sql);
+    const sql = `UPDATE likes SET qtd_likes = '${req.body.qtd_likes}' WHERE id_noticia = ${req.body.id_noticia}`;
+   
     dbConnection.query(sql, function(error, result){
         if(error){
             console.log(error);
@@ -80,6 +66,5 @@ app.put('/like/:id',function(req,res){
             res.send(result);
         }
     })
-
 })
 

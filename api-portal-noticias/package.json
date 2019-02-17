@@ -9,7 +9,7 @@
   "author": "Paulo Tarcisio",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.15.2",
+    "body-parser": "^1.18.3",
     "express": "^4.14.0",
     "mysql": "^2.16.0"
   }

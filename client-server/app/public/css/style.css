@@ -81,8 +81,6 @@ a{
 
  /*MAIN-CONTENT*/
  .main-container {
-   /*max-width: calc(70% - 120px);
-    float: left;*/
     margin: 0 60px;
     background-color: #f5f8ff;
 }
@@ -113,13 +111,15 @@ a{
     transition: .5s;
 }
 .item-card:hover{
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.8);
+    box-shadow: 0 4px 8px 0 rgba(165, 120, 255, .5), 0 6px 20px 0 rgba(165, 120, 255, .5);
     border-radius: 4px;
-    padding: 5px;
+    padding: 10px;
 }
 .item-card:nth-last-child(odd){
     margin-right: 40px;
 }
+
+
 
 .img-container{
     position: relative;
@@ -128,31 +128,42 @@ a{
     background: #6d6f7d;
     max-width: 390px;
     height: 220px;
+    overflow: hidden;
 }
 .item-card img{
     background: #282c34;
     align-self: center;
 }
 .like-content{
-    color: #f5f8ff;
+    position: relative;
+}
+.btn-like{
+    color: red;
+    cursor: pointer;
+    font-family: Arial;
     font-weight: bold;
     position: absolute;
     bottom: 12px;
-    right: 16px;
+    right: 50px;
     text-align: center;
-    background: #a578ff;
-    border-radius: 4px;
     padding: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
 }
-.like-content:hover{
-    color: black;
-    font-size: 22px;
+.btn-like:hover{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5), 0 3px 10px 0 rgba(0, 0, 0, 0.5);
+    min-width: 70px;
     transition: 0.2s;
 }
-
-.btn-like{
-    margin-right: 8px;
-    font-size: 22px;
+.qtd-like{
+    background-color: rgba(0, 0, 0, 0.8);
+    font-family: Arial;
+    font-weight: bold;
+    padding: 5px;
+    color: red;
+    position: absolute;
+    bottom: 12px;
+    right: 11px;
 }
 
 .description{
@@ -203,24 +214,28 @@ a{
 .aside-container{
     background: #F1F9FF;
     padding: 110px 80px;
-    
+    box-shadow: 0 4px 8px 0 rgba(165, 120, 255, .2), 0 6px 20px 0 rgba(165, 120, 255, .2);
 }
 .aside-item{
     width: 340px;
     margin: 40px 0px; 
+    transition: .5s;
+   
 }
 .aside-item:hover{
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.8);
+    box-shadow: 0 4px 8px 0 rgba(165, 120, 255, .5), 0 6px 20px 0 rgba(165, 120, 255, .5);
     border-radius: 4px;
-    padding: 5px;
+    padding: 10px;
 }
 .img-sidebar{
-    width: 340px;
+    max-width: 340px;
     height: 200px;
     background: #282c34;
     display: flex;
     justify-content: center;
     position: relative;
+    overflow: hidden;
+
 }
 .aside-item img{
     max-width: 340px;
@@ -259,8 +274,7 @@ a{
        height: 184px;
    }
    .description{
-    position: static;
-    height: 0px;
+    height: 110px;
    }
    .description h2{
        font-size: 14px;
@@ -302,10 +316,15 @@ a{
 }
 .night-mode .aside-container{
     background: #5f697c;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .night-mode .img-sidebar, .night-mode .img-container{
     background: #5f697c;
+}
+
+.night-mode .item-card:hover, .night-mode .aside-item:hover{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5), 0 3px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .night-mode .like-content{

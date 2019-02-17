@@ -1,4 +1,3 @@
-import initLike from './like-manager.js';
 
 export default function initApiRequest() {
 
@@ -13,7 +12,6 @@ export default function initApiRequest() {
             divMain.appendChild(articleNoticia);
         });
 
-        initLike();
     }
 
     //Cria artigos dinamicamente
@@ -22,26 +20,30 @@ export default function initApiRequest() {
         article.classList.add('item-card');
         article.classList.add('grid-6');
         article.innerHTML = `
-                        <a href="#">
-                        <div class="img-container">
-                            <img src="img/17.jpg"
-                                alt="">
-                            <div class="btn-like-content" id="id-${noticia.id_noticia}">
+                        <a href="http://www.google.com">
+                            <div class="img-container">
+                                <img src="img/${noticia.url_img}" alt="">
                             </div>
-                        </div>
-                        <div class="description">
-                            <h2>${noticia.titulo}</h2>
-                            <p>${noticia.conteudo}</p>
-                            <div class="card-footer">
-                                <p>atualizado</p>
-                                <p>${noticia.data_criacao}</p>
+                        </a>        
+                            <div class="like-content" id="post-id-${noticia.id_noticia}">
+                                <span class="btn-like" id="id-post-${noticia.id_noticia}">♥ Gostei</span>
+                                <span class="qtd-like">${noticia.qtd_likes}</span>
+                            </div>     
+                        <a href="http://www.google.com">    
+                            <div class="description">
+                                <h2>${noticia.titulo}</h2>
+                                <p>${noticia.conteudo}</p>
+                                <div class="card-footer">
+                                    <p>atualizado</p>
+                                    <p>${noticia.data_criacao}</p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
                          `
         return article;
     }
 
     fetchNoticias("http://localhost:7000/");
+    //fetchNoticias("http://192.168.1.4:7000/");
 }
 

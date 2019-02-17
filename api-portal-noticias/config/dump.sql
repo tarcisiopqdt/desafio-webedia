@@ -1,3 +1,4 @@
+
 CREATE DATABASE portal_noticias;
 use portal_noticias;
 
@@ -18,21 +19,28 @@ CREATE TABLE noticias(
 );
 
 CREATE TABLE likes(
- id int not null auto_increment,
- user_id int,
- post_id int,
+ id_like int not null auto_increment,
+ id_user int,
+ id_noticia int,
  qtd_likes int,
- PRIMARY KEY (id),
- foreign key (post_id) references noticias(id_noticia)
+ PRIMARY KEY (id_like),
+ foreign key (id_noticia) references noticias(id_noticia)
 );
 
-INSERT INTO NOTICIAS (URL_IMG, TITULO, CONTEUDO) VALUES ("10.jgp","Homem vence a batalha contra a mente","Ele conta como foi ter passado por tudo que é coisa ruim da vida.");
-INSERT INTO NOTICIAS (URL_IMG, TITULO, CONTEUDO) VALUES ("11.jgp","Jovem mostra como é difícil se tornar um programador web",'"Segundo ele, foram mais de dois anos de estudo intenso: faculdade e cursos online"');
-INSERT INTO NOTICIAS (URL_IMG, TITULO, CONTEUDO) VALUES ("10.jgp","Assista às quartas de final do Mundial de Rainbow Six; ao vivo",'"Assista às quartas de final do Mundial de Rainbow Six; ao vivo"');
+INSERT INTO NOTICIAS (URL_IMG, TITULO, CONTEUDO) VALUES ("10.jpg","Homem vence a batalha contra a mente","Ele conta como foi ter passado por tudo que é coisa ruim da vida.");
+INSERT INTO NOTICIAS (URL_IMG, TITULO, CONTEUDO) VALUES ("11.jpg","Jovem mostra como é difícil se tornar um programador web",'"Segundo ele, foram mais de dois anos de estudo intenso: faculdade e cursos online"');
+INSERT INTO NOTICIAS (URL_IMG, TITULO, CONTEUDO) VALUES ("12.jpg","Assista às quartas de final do Mundial de Rainbow Six; ao vivo",'"Assista às quartas de final do Mundial de Rainbow Six; ao vivo"');
+INSERT INTO NOTICIAS (URL_IMG, TITULO, CONTEUDO) VALUES ("13.jpg","Como posso fazer esse like funcionar?",'"Assista às quartas de final do Mundial de Rainbow Six; ao vivo"');
+INSERT INTO NOTICIAS (URL_IMG, TITULO, CONTEUDO) VALUES ("14.jpg","Simplesmente ao como isso deveria ser o mais simples posssivel porém, nao é o que de fato acontece",'"Assista às quartas de final do Mundial de Rainbow Six; ao vivo"');
+INSERT INTO NOTICIAS (URL_IMG, TITULO, CONTEUDO) VALUES ("15.jpg","Carregar mais notícias conforme o usuário for scrollando a página ('Scroll infinito').",'"Observar que no mobile o scroll é em formato de slide. Enquanto em desktop o scroll é natural (vertical)."');
+INSERT INTO NOTICIAS (URL_IMG, TITULO, CONTEUDO) VALUES ("16.jpg","Carregar mais notícias conforme o usuário for scrollando a página ('Scroll infinito').",'"Observar que no mobile o scroll é em formato de slide. Enquanto em desktop o scroll é natural (vertical)."');
 
-INSERT INTO likes (user_id, post_id,qtd_likes) values (1,1,0);
 
 
-select * from noticias;
-select * from likes;
-select * from likes where user_id=1;
+INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,1,0);
+INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,2,0);
+INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,3,0);
+INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,4,0);
+INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,5,0);
+INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,6,0);
+INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,7,0);
