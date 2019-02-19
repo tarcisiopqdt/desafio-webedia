@@ -5,7 +5,7 @@ export default function initApiRequest() {
     async function fetchNoticias(url) {
         const noticiasResponse = await fetch(url);
         const noticiasJSON = await noticiasResponse.json();
-        const divMain = document.querySelector(".main-container")
+        const divMain = document.querySelector(".main_noticias")
 
         noticiasJSON.forEach(noticia => {
             const articleNoticia = createItemCard(noticia);

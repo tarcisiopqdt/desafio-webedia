@@ -1,6 +1,7 @@
 export default function initLikeRequest(idPost,qtdLike){
   
     const url = 'http://localhost:7000/like/';
+    //const url = 'http://192.168.1.4:7000/like/';
     const options = {
         method: 'PUT',
         headers: {

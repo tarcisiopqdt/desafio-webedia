@@ -28,9 +28,3 @@ export default function initLikeManager(){
         initLikeRequest(id, qdtLikes);
     }
 }
-
-
-
-//verificar se o usario ja deu o like
-// SELECT * FROM LIKES WHERE userid=1 and postid = id_post 
-//caso existe mais de uma linha de retorna  o user ja deu like

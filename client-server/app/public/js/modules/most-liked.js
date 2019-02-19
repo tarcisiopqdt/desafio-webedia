@@ -35,6 +35,7 @@ export default function initMostLikedRequest() {
     }
 
     fetchNoticias("http://localhost:7000/most-liked");
+    //fetchNoticias("http://192.168.1.4:7000/most-liked");
     
 }
 
