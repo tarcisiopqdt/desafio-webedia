@@ -27,9 +27,14 @@ console.log("API online... http://localhost:" + port);
 //index
 app.get('/',function(req,res){
 
-  
+    
     //puxa todos as noticias
-    dbConnection.query("select * from noticias, likes where noticias.id_noticia = likes.id_noticia order by data_criacao desc limit 8", function(error, result){
+    const sql = `select * from noticias, likes where
+     noticias.id_noticia = likes.id_noticia 
+     order by data_criacao desc 
+     limit ${req.query.limit} offset ${req.query.offset}`;
+    console.log(sql)
+    dbConnection.query(sql, function(error, result){
         if(error){
             console.log(error);
         }else{

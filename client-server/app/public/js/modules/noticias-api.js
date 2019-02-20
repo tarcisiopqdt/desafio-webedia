@@ -1,13 +1,16 @@
 
-export default function initApiRequest() {
-
+export default function initApiRequest(limit) {
+    limit = limit || 8;
+    let offset = 0;
     //Realiza a requisição para a API
     async function fetchNoticias(url) {
         const noticiasResponse = await fetch(url);
         const noticiasJSON = await noticiasResponse.json();
         const divMain = document.querySelector(".main_noticias")
 
+
         noticiasJSON.forEach(noticia => {
+            offset += 1;
             const articleNoticia = createItemCard(noticia);
             divMain.appendChild(articleNoticia);
         });
@@ -43,7 +46,7 @@ export default function initApiRequest() {
         return article;
     }
 
-    fetchNoticias("http://localhost:7000/");
+    fetchNoticias(`http://localhost:7000?offset=${offset}&limit=${limit}`);
     //fetchNoticias("http://192.168.1.4:7000/");
 }
 
