@@ -13,7 +13,6 @@ export default function initLikeRequest(idPost,qtdLike){
 
     fetch(url, options).then(response => response.json())
     .then(json => {
-      console.log(json);
     });
 }
 

@@ -18,7 +18,7 @@ export default function initMostLikedRequest() {
         article.innerHTML = `
                     <a href="#">
                         <div class="img-sidebar">
-                            <img src="img/${noticia.url_img}" >
+                            <img src="${noticia.url_img}" >
                         </div>  
                     </a>        
                         <div class="like-content">

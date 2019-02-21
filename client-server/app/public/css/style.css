@@ -110,10 +110,8 @@ a{
 @keyframes aparecer {
     from {
         height: 0px;
-        opacity: 0;
       }
       to {
-        opacity: 1;
         height: 433px;
       }
   }

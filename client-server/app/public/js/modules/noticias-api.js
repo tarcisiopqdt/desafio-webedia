@@ -1,20 +1,20 @@
+import initLikeManager from './like-manager.js';
 
-export default function initApiRequest(limit) {
-    limit = limit || 8;
-    let offset = 0;
+export default function initApiRequest(limit,offset) {
+    limit || 8;
     //Realiza a requisição para a API
     async function fetchNoticias(url) {
         const noticiasResponse = await fetch(url);
         const noticiasJSON = await noticiasResponse.json();
         const divMain = document.querySelector(".main_noticias")
 
-
         noticiasJSON.forEach(noticia => {
-            offset += 1;
+            offset++;
             const articleNoticia = createItemCard(noticia);
             divMain.appendChild(articleNoticia);
+            
         });
-
+        initLikeManager();
     }
 
     //Cria artigos dinamicamente
@@ -23,16 +23,16 @@ export default function initApiRequest(limit) {
         article.classList.add('item-card');
         article.classList.add('grid-6');
         article.innerHTML = `
-                        <a href="http://www.google.com">
+                        <a href="${noticia.url_noticia}" target="blank">
                             <div class="img-container">
-                                <img src="img/${noticia.url_img}" alt="">
+                                <img src="${noticia.url_img}" alt="">
                             </div>
                         </a>        
-                            <div class="like-content" id="post-id-${noticia.id_noticia}">
+                            <div class="like-content">
                                 <span class="btn-like" id="id-post-${noticia.id_noticia}">♥ Gostei</span>
                                 <span class="qtd-like">${noticia.qtd_likes}</span>
                             </div>     
-                        <a href="http://www.google.com">    
+                        <a href="${noticia.url_noticia}" target="blank">    
                             <div class="description">
                                 <h2>${noticia.titulo}</h2>
                                 <p>${noticia.conteudo}</p>

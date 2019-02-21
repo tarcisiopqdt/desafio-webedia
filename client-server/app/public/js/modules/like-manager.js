@@ -1,24 +1,21 @@
 import initLikeRequest from './like-api.js';
 
-export default function initLikeManager(){
-    window.onload = function(){
+export default function initLikeManager() {
 
-        const btnLike = document.querySelectorAll(".btn-like");
+    const btnLike = document.querySelectorAll(".btn-like");
+    btnLike.forEach(btn => {
+        btn.addEventListener("click", managerLike)
+    })
 
-        btnLike.forEach(btn =>{
-            btn.addEventListener("click", managerLike)
-        })
-    }
-    
-    function managerLike(e){
+    function managerLike(e) {
         const idBtn = document.querySelector(`#${e.target.id}`)
         const labelLikes = idBtn.nextElementSibling;
         let qdtLikes = +labelLikes.textContent
 
-        if(idBtn.textContent == "♥ Gostei"){
+        if (idBtn.textContent == "♥ Gostei") {
             idBtn.innerHTML = "Não Gostei"
             labelLikes.innerHTML = ++qdtLikes;
-        }else{
+        } else {
             idBtn.innerHTML = "♥ Gostei";
             labelLikes.innerHTML = --qdtLikes;
         }

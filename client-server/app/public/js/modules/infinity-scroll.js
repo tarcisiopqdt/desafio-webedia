@@ -1,5 +1,8 @@
 import initApiRequest from "./noticias-api.js";
 export default function() {
+  const limit = 8
+  let offset = 0;
+  initApiRequest(limit,offset)
   window.addEventListener("scroll", function() {
     const viewport = document.documentElement.clientHeight;
     const container = document.body.offsetHeight;
@@ -10,7 +13,10 @@ export default function() {
       scrollHeight == Math.ceil(scroll) ||
       scrollHeight == Math.floor(scroll)
     ) {
-      initApiRequest(8);
+        offset++;
+        offset += 8;
+      console.log(offset)
+      initApiRequest(limit, offset);
     }
   });
 }
