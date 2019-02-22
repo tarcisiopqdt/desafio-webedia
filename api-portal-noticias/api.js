@@ -7,7 +7,7 @@ indexRouter(app, dbConnection);
 const port = 7000;
 
 app.listen(port);
-console.log("----------------- API online on: http://localhost:" + port + " -----------------");
+console.log("----------------- API online: http://localhost:" + port + " -----------------");
 
 
 

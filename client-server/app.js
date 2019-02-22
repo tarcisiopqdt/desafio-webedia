@@ -6,6 +6,6 @@ routerIndex(app);
 
 
 app.listen(port,function(){
-    console.log("----------------- Client Server on: http://localhost:" + port + " -----------------");
+    console.log("----------------- Client Server: http://localhost:" + port + " -----------------");
 });
 
