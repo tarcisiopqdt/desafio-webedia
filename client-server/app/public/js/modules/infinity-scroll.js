@@ -8,7 +8,6 @@ export default function() {
     const container = document.body.offsetHeight;
     let scrollHeight = container - viewport;
     let scroll = this.scrollY;
-
     if (
       scrollHeight == Math.ceil(scroll) ||
       scrollHeight == Math.floor(scroll)

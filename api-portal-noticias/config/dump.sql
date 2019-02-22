@@ -2,6 +2,8 @@
 CREATE DATABASE portal_noticias;
 use portal_noticias;
 
+SET time_zone = "+00:00";
+
 CREATE TABLE users(
  id int not null auto_increment,
  name varchar(55),
@@ -14,19 +16,24 @@ CREATE TABLE noticias(
  url_noticia text,
  titulo varchar(200),
  conteudo text,
- data_criacao timestamp default current_timestamp,
+ data_criacao datetime,
  PRIMARY KEY (id_noticia)
 
 );
 
 CREATE TABLE likes(
  id_like int not null auto_increment,
- id_user int,
  id_noticia int,
  qtd_likes int,
  PRIMARY KEY (id_like),
  foreign key (id_noticia) references noticias(id_noticia)
 );
+
+CREATE INDEX index_noticias
+ON noticias (id_noticia);
+
+CREATE INDEX index_likes
+ON likes (id_like);
 
 INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("https://sm.ign.com/ign_br/screenshot/default/whatsapp-image-2019-02-05-at-140722-1_e73f.jpg","https://br.ign.com/samsung/70603/news/samsung-revela-notebook-com-visual-retro-e-oculos-vr-que-tra","SAMSUNG REVELA NOTEBOOK COM VISUAL RETRÔ E ÓCULOS VR QUE TRAZ MAIS IMERSÃO","Samsung Notebook Flash e HMD Odyssey+ chegam ao mercado brasileiro no dia 22 de fevereiro");
 INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("https://sm.ign.com/t/ign_br/screenshot/default/cn-i7j6xgaaopba_mn4r.280.jpg","https://br.ign.com/gris/69303/news/os-primeiros-16-minutos-de-gris","OS PRIMEIROS 16 MINUTOS DE GRIS",'"Gris, game do estúdio Nomada, já está disponível para Nintendo Switch e PC. Com um visual deslumbrante, o game é protagonizado por "uma esperançosa jovem perdida em seu próprio mundo"."');
@@ -46,24 +53,43 @@ INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("https://i
 INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("https://images1.minhavida.com.br/imagensconteudo/34374/exerc%c3%adcios%20sem%20academia%2002_34374_250_375.jpg","https://www.minhavida.com.br/fitness/materias/34374-exercicios-fora-da-academia-74-das-pessoas-buscam-novas-maneiras-de-treinar","Exercícios fora da academia: 74% das pessoas buscam novas maneiras de treinar","Para grande parte dos brasileiros sedentários, adaptar exercícios aos próprios horários é decisivo para ter uma vida mais saudável");
 INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("http://static1.purebreak.com.br/articles/1/83/70/1/@/312169-brit-awards-2019-veja-tudo-o-que-vai-ro-diapo-1.jpg","http://www.purebreak.com.br/noticias/brit-awards-2019-indicados-performances-apostas-e-tudo-que-deve-rolar-na-premiacao/83701","Veja tudo o que vai rolar no Brit Awards 2019 aqui no Purebreak!","Nesta quarta-feira (20) vai rolar o Brit Awards, maior evento de música do Reino Unido e uma galera que a gente ama vai marcar presença na premiação. ");
 
+INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("https://images1.minhavida.com.br/imagensconteudo/34429/minha-vida-desmame-noturno_34429_250_375.jpg","https://www.minhavida.com.br/familia/materias/34429-desmame-noturno-quando-e-a-hora-certa","Desmame Noturno: Quando é a hora certa?","Veja como identificar os sinais de que seu filho está pronto para o desmame noturno");
+INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("https://images1.minhavida.com.br/imagensconteudo/34420/aquecimento-global-bebes_34420_250_375.jpg","https://www.minhavida.com.br/familia/noticias/34420-aquecimento-global-pode-influenciar-o-sexo-do-bebe-entenda","Aquecimento global pode influenciar o sexo do bebê: entenda","Fenômeno também afeta a gestação das mulheres, e não apenas o meio ambiente");
+INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("https://images1.minhavida.com.br/imagensconteudo/34422/minha%20vida%20-%20leiliane_34422_250_375.jpg","https://www.minhavida.com.br/saude/noticias/34422-entenda-a-doenca-que-acomete-mulher-que-socorreu-motorista-apos-acidente-de-helicoptero","Entenda a doença que acomete mulher que socorreu motorista após acidente de helicóptero","Leiliane Rafael da Silva não pode fazer esforço e se estressar por conta de Malformação Arteriovenosa (MAV) JÁ AJUDOU 0 PESSOAS");
+INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("https://sm.ign.com/t/ign_br/screenshot/default/blob_c9v6.280.jpg","https://br.ign.com/playstation-1/71047/news/voce-usaria-este-relogio-oficial-retro-do-playstation","Você usaria este relógio oficial retrô do PlayStation?","Volta e meia, quando não está pensando no PS4 e em seus games -");
+INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("https://sm.ign.com/t/ign_br/screenshot/default/alien-movie_8py4.280.jpg","https://br.ign.com/cinema-tv/71077/news/alien-isolation-pode-ganhar-serie-animada-para-maiores","Alien: Isolation pode ganhar série animada para maiores","Além do game mobile Alien: Blackout, a franquia de ficção científica e terror de Ridley Scott pode alcançar novos formatos.");
+INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("https://sm.ign.com/t/ign_br/news/t/the-haunti/the-haunting-of-hill-house-gets-season-2-order-from-netflix_jedv.280.jpg","https://br.ign.com/the-haunting-of-hill-house/71086/news/netflix-renova-a-maldicao-da-residencia-hill-para-2a-tempora","Netflix renova A Maldição da Residência Hill para 2ª temporada","A Maldição da Residência Hill, série de terror da Netflix, foi renovada para uma segunda temporada.");
+INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("https://sm.ign.com/t/ign_br/screenshot/default/codeveronica_s1br.280.jpg","https://br.ign.com/xbox-one/71091/news/resident-evil-code-veronica-torna-se-retrocompativel-no-xbox","Resident Evil – Code: Veronica torna-se retrocompatível no Xbox One","O título chega ao sistema da Microsoft junto com a trilogia Lost Planet.");
+INSERT INTO NOTICIAS (URL_IMG, URL_NOTICIA, TITULO, CONTEUDO) VALUES ("https://sm.ign.com/t/ign_br/news/t/thors-chri/thors-chris-hemsworth-to-play-hulk-hogan-in-biopic-from-joke_6b1f.280.jpg","https://br.ign.com/chris-hemsworth/71068/news/chris-hemsworth-sera-hulk-hogan-em-cinebiografia-da-netflix","Chris Hemsworth será Hulk Hogan em cinebiografia da Netflix","O filme irá abordar a ascensão a fama de Hulk Hogan.");
 
 
 
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,1,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,2,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,3,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,4,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,5,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,6,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,7,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,8,0);
 
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,9,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,10,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,11,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,12,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,13,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,14,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,15,0);
-INSERT INTO likes (id_user, id_noticia,qtd_likes) values (1,16,0);
+
+INSERT INTO likes (id_noticia,qtd_likes) values (1,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (2,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (3,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (4,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (5,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (6,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (7,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (8,0);
+
+INSERT INTO likes (id_noticia,qtd_likes) values (9,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (10,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (11,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (12,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (13,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (14,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (15,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (16,0);
+
+INSERT INTO likes (id_noticia,qtd_likes) values (17,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (18,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (19,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (20,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (21,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (22,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (23,0);
+INSERT INTO likes (id_noticia,qtd_likes) values (24,0);
 
