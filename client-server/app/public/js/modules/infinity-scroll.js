@@ -15,7 +15,6 @@ export default function() {
     ) {
         offset++;
         offset += 8;
-      console.log(offset)
       initApiRequest(limit, offset);
     }
   });

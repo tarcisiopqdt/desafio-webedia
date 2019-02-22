@@ -342,7 +342,6 @@ a{
     }
   }
   
-  
 .aside-item:hover{
     box-shadow: 0 4px 8px 0 rgba(165, 120, 255, .5), 0 6px 20px 0 rgba(165, 120, 255, .5);
     border-radius: 4px;
@@ -416,6 +415,13 @@ a{
         width: 56px;
         height: 56px;
         margin: 25px;
+    }
+}
+
+@media (min-width: 740px) and (max-width: 1200px) {
+    .aside-item{
+        margin: 110px 10px;
+        transition: 1s;
     }
 }
 
