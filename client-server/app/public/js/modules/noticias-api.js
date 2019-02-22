@@ -19,6 +19,7 @@ export default function initApiRequest(limit,offset) {
 
     //Cria artigos dinamicamente
     function createItemCard(noticia) {
+        const dataFormatada = formataData(noticia.data_criacao);
         const article = document.createElement('article');
         article.classList.add('item-card');
         article.classList.add('grid-6');
@@ -37,13 +38,27 @@ export default function initApiRequest(limit,offset) {
                                 <h2>${noticia.titulo}</h2>
                                 <p>${noticia.conteudo}</p>
                                 <div class="card-footer">
-                                    <p>atualizado</p>
-                                    <p>${noticia.data_criacao}</p>
+                                    <p>Atualizado</p>
+                                    <p>${dataFormatada}</p>
                                 </div>
                             </div>
                         </a>
                          `
         return article;
+    }
+
+    function formataData(noticia_datacriacao){
+        const data = new Date(noticia_datacriacao),
+            dia  = data.getDate().toString(),
+            diaF = (dia.length == 1) ? '0'+dia : dia,
+            mes  = (data.getMonth()+1).toString(), 
+            mesF = (mes.length == 1) ? '0'+mes : mes,
+            hora = data.getHours().toString(),
+            horaF = (hora.length == 1) ? '0'+hora : hora,
+            min = data.getMinutes(). toString(),
+            minF = (min.length == 1) ? '0'+min : min;
+
+    return diaF+"/"+mesF+" - "+hora+":"+minF;
     }
 
     fetchNoticias(`http://localhost:7000?offset=${offset}&limit=${limit}`);

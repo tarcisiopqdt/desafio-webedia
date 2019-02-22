@@ -4,11 +4,6 @@ use portal_noticias;
 
 SET time_zone = "+00:00";
 
-CREATE TABLE users(
- id int not null auto_increment,
- name varchar(55),
- PRIMARY KEY (id)
-);
 
 CREATE TABLE noticias(
  id_noticia int not null auto_increment,
@@ -16,7 +11,7 @@ CREATE TABLE noticias(
  url_noticia text,
  titulo varchar(200),
  conteudo text,
- data_criacao datetime,
+ data_criacao datetime default current_timestamp,
  PRIMARY KEY (id_noticia)
 
 );
