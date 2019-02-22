@@ -104,17 +104,32 @@ a{
     height: 433px;
     margin-bottom: 20px;
     transition: .3s;
-    animation: aparecer 2s;
+    padding: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5), 0 4px 10px 0 rgba(0, 0, 0, .5);
+    animation: surgirDoFundo 1s;
 }
 
-@keyframes aparecer {
-    from {
-        height: 0px;
-      }
-      to {
-        height: 433px;
-      }
+
+@keyframes surgirDoFundo{
+    0% {
+        opacity:0;
+        transform:  scaleX(0.30) scaleY(0.30) ;
+    }
+    25% {
+        opacity:1;
+        transform:  scaleX(1.10) scaleY(1.10) ;
+    }
+    50% {
+      opacity:1;
+      transform:  scaleX(0.95) scaleY(0.95) ;
+    }
+    100% {
+      opacity:1;
+      transform:  scaleX(1.00) scaleY(1.00) ;
+    }
   }
+  
+  
 
 .item-card:hover{
     box-shadow: 0 4px 8px 0 rgba(165, 120, 255, .5), 0 6px 20px 0 rgba(165, 120, 255, .5);
@@ -306,8 +321,28 @@ a{
     max-width: 340px;
     margin: 110px 80px; 
     transition: .5s;
-   
+    padding: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5), 0 4px 10px 0 rgba(0, 0, 0, .5);
+    animation: vemDaEsq 2s;
 }
+
+@keyframes vemDaEsq{
+    0% {
+    opacity:0;
+    transform: translate(500px,0px)  ;
+
+    }
+    20% {
+    opacity:1;
+    transform:  translate(20px,0px)  ;
+    }
+    100% {
+    opacity:1;
+    transform:  translate(0px,0px)  ;
+    }
+  }
+  
+  
 .aside-item:hover{
     box-shadow: 0 4px 8px 0 rgba(165, 120, 255, .5), 0 6px 20px 0 rgba(165, 120, 255, .5);
     border-radius: 4px;

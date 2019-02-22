@@ -8,7 +8,7 @@ module.exports = class NoticiasDAO {
     getTodasNoticias(callback) {
        const sql = `select * from noticias, likes where noticias.id_noticia = likes.id_noticia 
                 order by data_criacao desc 
-                limit ${this.req.query.limit} offset ${this.req.query.offset}`;
+                limit ${this.req.query.limit || 8} offset ${this.req.query.offset || 0}`;
 	    this.dbConnection.query(sql, callback);
     }
 
