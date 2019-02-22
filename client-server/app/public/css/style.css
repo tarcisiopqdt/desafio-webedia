@@ -448,6 +448,12 @@ a{
 .night-mode h1, .night-mode h2, .night-mode p, .night-mode{
     color: #f5f8ff;
 }
+.night-mode .main-title::after{
+    color: #f5f8ff;
+}
+.night-mode .item-card, .night-mode .aside-item{
+    background: #a578ff;
+}
 
 .night-mode .aside-container{
     background: #5f697c;
